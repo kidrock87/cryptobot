@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "bitfinex": "^1.0.3",
+    "bitfinex-api": "^0.2.3",
+    "bitfinex-api-node": "^1.2.1",
+    "crypto": "^1.0.1",
+    "decimal": "0.0.2",
+    "ws": "^3.2.0"
+  }
+}
