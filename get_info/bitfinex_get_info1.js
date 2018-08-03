@@ -13,12 +13,6 @@ bitfinex_get_info_from_exchange: function(){
         bws.on('open', () => {
           //bws.subscribeTrades('BTCUSD')
           //bws.subscribeOrderBook('BTCUSD')
-
-
-
-
-
-
           bws.subscribeTicker('BTCUSD')
           bws.subscribeTicker('EOSUSD')
           bws.subscribeTicker('ETHUSD')
@@ -31,11 +25,12 @@ bitfinex_get_info_from_exchange: function(){
           bws.subscribeTicker('ZECUSD')
           bws.subscribeTicker('XMRUSD')
           bws.subscribeTicker('EOSUSD')
+          bws.subscribeTicker('SANUSD')
           bws.subscribeTicker('AVTUSD')
           bws.subscribeTicker('OMGUSD')
           bws.subscribeTicker('BCHUSD')
           bws.subscribeTicker('ETPUSD')
-
+      
         })
 
         /*

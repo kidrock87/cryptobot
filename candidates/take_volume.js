@@ -65,7 +65,7 @@ module.exports.take_volume = async function(pair) {
                           }
                           //bot.sendMessage("294132907", "Пара: "+pair+"\r\nтаймфрейм: "+tf+"\r\nПроцент: "+rrr+"\r\nНаправленность: "+vector_sign);
                           bot.sendMessage("7618953", "Пара: "+pair+"\r\nтаймфрейм: "+tf+"\r\nПроцент: "+rrr+"\r\nНаправленность: "+vector_sign);
-                          bot.sendMessage("294132907", "Пара: "+pair+"\r\nтаймфрейм: "+tf+"\r\nПроцент: "+rrr+"\r\nНаправленность: "+vector_sign);
+                          //bot.sendMessage("294132907", "Пара: "+pair+"\r\nтаймфрейм: "+tf+"\r\nПроцент: "+rrr+"\r\nНаправленность: "+vector_sign);
                           //bot.sendMessage("", "Пара: "+pair+"\r\nтаймфрейм: "+t_frame+"\r\nПроцент: "+rrr);
                       }else{
                           console.log('vector error')

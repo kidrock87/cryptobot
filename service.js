@@ -1,15 +1,10 @@
-const BFX = require('bitfinex-api-node');
+const BFX = require('bitfinex-api-node')
+const bfxRest = new BFX('1234', '4321', {version: 2}).rest
 
-const bfx = new BFX({
-    apiKey: 'tErnGEZgfGPuSA1qZtJcpHL2v363iyLT7E7w4OJRWXa',
-    apiSecret: 'zOsex8gFrDqEzKAWvjuzaFkCuq9IOPo5QRYzOu510NQ',
-})
-
-const bfxRest = bfx.rest(2);
-
-
-
-var opts = {timeframe:"30m", symbol:"tIOTUSD", section:"hist"};
+var opts = {};
+opts.timeframe= "1m";
+opts.symbol= "tIOTUSD";
+opts.section= "hist";
 
 bfxRest.candles(opts, (err, res) => {
 	if (err) console.log(err)

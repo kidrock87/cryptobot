@@ -21,7 +21,7 @@ module.exports = {
               var cd_pair = json[0].pair;
               cd_pair = cd_pair.substr(1);
               cd_pair = cd_pair.toLowerCase();
-              
+
 
               console.log(cd_pair);
                 request.get({url:'https://api.bitfinex.com/v1/symbols_details'}, function(err,httpResponse,body5){
@@ -93,13 +93,6 @@ module.exports = {
 
 
       })
-
-      //запросить цену.
-
-      //выставить ОСО
-
-
-
   }
 
 
