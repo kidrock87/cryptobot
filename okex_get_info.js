@@ -1,8 +1,24 @@
+//Взять минутные свечи
+//Преобразовать в пятиминутные
+//Высчитать средний объем за 12 часов по пятиминуткам
+//Сравнить объем одноминутки со средним объемом за 12 часов по пятиминуткам
+//Если объем больше  чем 12ч объем дать сигнал.
+
+
 "use strict";
 var fs = require('fs');
 const ccxt = require ('ccxt');
 const axios = require('axios');
 
+function separateIt(arr, size) {
+    var newArr = [];
+    for (var i = 0; i < arr.length; i += size) {
+        var sliceIt = arr.slice(i, i + size);
+        newArr.push(sliceIt);
+    }
+    return newArr;
+}
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 // ----------------------------------------------------------------------------
 
@@ -19,70 +35,110 @@ const axios = require('axios');
         })
         await exchange.loadMarkets ()
         let symbols = exchange.symbols;
-        const ohlcv = await exchange.fetchOHLCV('BTC/USDT', '1m')
-        console.log(ohlcv);
+        symbols = symbols.reverse(); 
+        console.log(symbols.length);
 
-        /*
-        symbols.forEach(async function (value) {
-          if( value.indexOf('/USDT') >= 0){
+        //const ohlcv = await exchange.fetchOHLCV('ZRX/USDT', '1m')
 
-            let ticker = await exchange.fetchTicker(value);
-            let pair =  ticker.symbol
-            pair = pair.replace('/', '');
-            let volume = ticker.baseVolume;
-            let insert_date = Math.floor(Date.now() / 1000);
-            let bid = ticker.bid;
-            let ask = ticker.ask;
-            let spread = ask - bid;
-            let volume5 = '0';
-            let res = await axios('http://localhost:3000/tickers/okex/'+pair);
-            console.log(res.data)
-            //console.log(ticker)
+        //let pair = "BTC/USDT";
+        for await (let pair of symbols) {
+          if( pair.indexOf('/USDT') >= 0){
+                //await delay(1500);
+                const ohlcv = await exchange.fetchOHLCV(pair, '1m')
+                //Первая минутная свеча
+                if(ohlcv.length > 1){
+                          let candle_1 = await ohlcv[0][5];
+                          let c1_insert_date = await ohlcv[0][0];
 
+                          let aaa = await separateIt(ohlcv, 5);
 
-            if(res.data.length > 0){
-                let pre_volume = res.data[0].volume;
-                volume5 = volume - pre_volume;
-                console.log(pair);
-                console.log(volume);
-                console.log(pre_volume);
-                console.log(volume5)
-            }else{
-              volume5 = '0';
-            }
+                          let candle_5 = aaa.map(function(value) {
+                              //console.log(value.length);
+                              //console.log(value);
+                              //console.log('--------------------------')
+                              try {
 
-            axios.post('http://localhost:3000/tickers', {
+                                let insert_date = value[4][0];
+                                let open_price = value[0][1];
+                                let high_price = value.reduce((prev, cur) => Math.max(prev, cur[2]), 0);
+                                let low_price = value.reduce((prev, cur) => Math.min(prev, cur[3]), 0);
+                                let closing_price = value[4][4];
+                                let sumVolume = value.reduce((prev, cur) => prev + cur[5], 0);
 
-              ask_price: ask,
-              bid_price: bid,
-              spread: spread,
-              volume: volume,
-              trades24: '0',
-              insert_date: insert_date,
-              exchange : 'okex',
-              pair: pair,
-              altname: pair,
-              ask_rat: '0',
-              spread_rat: '0',
-              volume_mod: '0',
-              ask_mod: '0',
-              volume5: volume5,
-            })
-            .then(function (response) {
-              //console.log(response);
-            })
-            .catch(function (error) {
-              //console.log(error);
-            });
+                                let pre_candle_5 = [];
+                                pre_candle_5.push(insert_date);
+                                pre_candle_5.push(open_price);
+                                pre_candle_5.push(high_price);
+                                pre_candle_5.push(low_price);
+                                pre_candle_5.push(closing_price);
+                                pre_candle_5.push(sumVolume);
+                                //СОХРАНИТЬ В БД 5-МИНУТНУЮ СВЕЧУ
+
+                                console.log(open_price)
+                                console.log(ohlcv.length)
+                                console.log(pair)
+                                console.log("-----------------------------------------------------------")
 
 
-            //Взять волюм, взять пару/ посчитать волюм за последние пять минут
-            //Добавить время.
-            //Записать в бд
+                                return pre_candle_5;
+
+                              } catch (err) {
+                                  console.log(pair)
+                                  console.log('err')
+
+                              }
+
+                          });
+
+
+                          candle_5 = candle_5.slice(0, 144);
+                          let sumVolume5 = candle_5.reduce((prev, cur) => prev + cur[5], 0);
+
+                          //Средний объем по пятиминуткам за 12 часов
+                          let average_volume = sumVolume5 / 144;
+                          //Запись в бд среднего значения
+                          //console.log(average_volume)
+                          //console.log(candle_1)
+                          let signal = '0';
+                          if(candle_1 > average_volume){
+                            signal = '1';
+
+                          }
+
+                          let exchange_name = "okex"
+                          let pair_name = pair.replace('/', '');
+
+
+                          //let last_pair = await axios('http://localhost:3000/signal/'+exchange_name+'/'+pair);
+
+                          let lp_insert_date = '0';
+
+                          //if(last_pair.data){
+                          //  lp_insert_date = last_pair.data.insert_date
+                        //  }
+                          if(c1_insert_date > lp_insert_date){
+                                  axios.post('http://localhost:3000/signals', {
+                                    pair: pair_name,
+                                    exchange: exchange_name,
+                                    average_volume: average_volume,
+                                    volume: candle_1,
+                                    signal: signal,
+                                    insert_date: c1_insert_date,
+                                  })
+                                  .then(function (response) {
+                                    //console.log(response.data);
+                                  })
+                                  .catch(function (error) {
+                                    //console.log(error);
+                                  });
+                          }
+
+
+                }
 
           }
-        });
-        */
+        }
+
         //console.log(await exchange.fetchTicker("BTC/USDT"));
         //console.log(await exchange.symbols);
 
