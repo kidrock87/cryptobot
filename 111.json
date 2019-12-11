@@ -1,54 +1,125 @@
-btcusd,
-ltcusd,
-ethusd,
-etcusd,
-zecusd
-xmrusd
-dshusd
-xrpusd
-iotusd
-eosusd
-sanusd
-omgusd
-bchusd
-neousd
-etpusd
-qtmusd
-avtusd
-edousd
-btgusd
-datusd
-qshusd
-yywusd
-gntusd
-sntusd
-batusd
-mnausd
-funusd
-zrxusd
-tnbusd
-spkusd
-trxusd
-rcnusd
-rlcusd
-aidusd
-sngusd
-repusd
-elfusd
-iosusd
-aiousd
-rdnusd
-lrcusd
-waxusd
-daiusd
-cfiusd
-agiusd
-bftusd
-mtnusd
-odeusd
-antusd
-dthusd
-mitusd
-stjusd
-xlmusd
-xvgusd
+HC / BTC
+ETH / BTC
+TRX / BTC
+PHX / BTC
+BCHSV / BTC
+BNB / BTC
+XRP / BTC
+QKC / BTC
+LINK / BTC
+XLM / BTC
+TUSD / BTC
+BCHABC / BTC
+LTC / BTC
+WAVES / BTC
+EOS / BTC
+ADA / BTC
+QTUM / BTC
+XVG / BTC
+DOCK / BTC
+ONT / BTC
+POLY / BTC
+ZIL / BTC
+NEO / BTC
+XMR / BTC
+RVN / BTC
+WTC / BTC
+ZEC / BTC
+XEM / BTC
+DLT / BTC
+IOTX / BTC
+ETC / BTC
+VET / BTC
+PPT / BTC
+MTL / BTC
+ENJ / BTC
+BAT / BTC
+ICX / BTC
+MANA / BTC
+ARN / BTC
+FUEL / BTC
+STORM / BTC
+STEEM / BTC
+STRAT / BTC
+DENT / BTC
+ZRX / BTC
+XZC / BTC
+IOST / BTC
+NPXS / BTC
+DASH / BTC
+NANO / BTC
+ZEN / BTC
+GO / BTC
+FUN / BTC
+QSP / BTC
+CDT / BTC
+AION / BTC
+LEND / BTC
+IOTA / BTC
+INS / BTC
+WAN / BTC
+TNT / BTC
+VIB / BTC
+PIVX / BTC
+ELF / BTC
+LRC / BTC
+OMG / BTC
+POA / BTC
+THETA / BTC
+GVT / BTC
+MTH / BTC
+AE / BTC
+HC / ETH
+TRX / ETH
+BNB / ETH
+XRP / ETH
+PHX / ETH
+LINK / ETH
+TUSD / ETH
+XLM / ETH
+EOS / ETH
+DOCK / ETH
+LTC / ETH
+NPXS / ETH
+ADA / ETH
+QKC / ETH
+WAVES / ETH
+QTUM / ETH
+ZIL / ETH
+GTO / ETH
+XVG / ETH
+NEO / ETH
+ARN / ETH
+ONT / ETH
+VET / ETH
+XEM / ETH
+ENJ / ETH
+DLT / ETH
+BAT / ETH
+OMG / ETH
+PPT / ETH
+MANA / ETH
+ETC / ETH
+IOTA / ETH
+ZEC / ETH
+XMR / ETH
+ICX / ETH
+WTC / ETH
+VIB / ETH
+IOST / ETH
+EVX / ETH
+STEEM / ETH
+ZRX / ETH
+NANO / ETH
+DASH / ETH
+AE / ETH
+INS / ETH
+SNT / ETH
+BCD / ETH
+FUN / ETH
+XZC / ETH
+ELF / ETH
+STRAT / ETH
+STORM / ETH
+AION / ETH
+NULS / ETH
