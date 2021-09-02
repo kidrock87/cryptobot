@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "binance-api-node": "^0.9.12",
     "bitfinex": "^1.0.3",
     "bitfinex-api": "^0.2.3",
